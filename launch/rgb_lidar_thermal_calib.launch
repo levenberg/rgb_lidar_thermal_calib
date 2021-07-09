@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- <arg name="path" default="$(find shimizu_bundler_mvg)/data_oct19"/> -->
+    <arg name="path" default="/home/huai/Documents/data/leonardo_drs/rgb_lidar_thermal"/>
+
+    <!-- <node pkg="rosbag" type="play" name="rosbag" required="true" 
+        args="/home/huai/Documents/data/thermal/IR-RGB/2021-02-19-21-30-30.bag /home/huai/Documents/data/thermal/IR-RGB/set2_rgb_imu.bag"/> -->
+    <node pkg="rgb_lidar_thermal_calib" type="rgb_lidar_thermal_calib_node" name="rgb_lidar_thermal_calib_node" output="screen">
+        <param name="rgbDir"       value="$(arg path)/rgb/"/>
+        <param name="thermalDir"       value="$(arg path)/thermal/"/> 
+        <param name="laserDir"       value="$(arg path)/lidar/"/>
+        <param name="rgb_topic"       value="/ros_frame/camera_1"/> 
+        <param name="thermal_topic"       value="/thermal/image"/>
+        <param name="laser_topic"      value="/velodyne_points" /> 
+        <param name="min_intensity" type="double" value="23500"/>
+        <param name="max_intensity" type="double" value="25000"/>
+    </node>
+
+</launch>
